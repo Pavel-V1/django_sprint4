@@ -24,7 +24,7 @@ def get_public_posts():
         Post.objects.filter(
             is_published=True,
             pub_date__lte=timezone.now(),
-            category__is_published=True,
+            category__is_published=True
         )
         .select_related('author', 'category', 'location')
         .annotate(comment_count=Count('comments'))
@@ -63,8 +63,8 @@ def post_detail(request, id):
         {
             'post': post,
             'comments': comments,
-            'form': form,
-        },
+            'form': form
+        }
     )
 
 
@@ -79,8 +79,8 @@ def category_posts(request, category_slug):
         'blog/category.html',
         {
             'category': category,
-            'page_obj': page_obj,
-        },
+            'page_obj': page_obj
+        }
     )
 
 
@@ -101,7 +101,10 @@ def profile(request, username):
     return render(
         request,
         'blog/profile.html',
-        {'profile': profile, 'page_obj': page_obj}
+        {
+            'profile': profile,
+            'page_obj': page_obj
+        }
     )
 
 
@@ -191,8 +194,8 @@ def edit_comment(request, post_id, comment_id):
         'blog/comment.html',
         {
             'form': form,
-            'comment': comment,
-        },
+            'comment': comment
+        }
     )
 
 
@@ -211,6 +214,6 @@ def delete_comment(request, post_id, comment_id):
         request,
         'blog/comment.html',
         {
-            'comment': comment,
-        },
+            'comment': comment
+        }
     )

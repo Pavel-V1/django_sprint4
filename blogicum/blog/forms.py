@@ -54,6 +54,9 @@ class PostForm(forms.ModelForm):
         input_date_formats=('%Y-%m-%d', '%d.%m.%Y'),
         input_time_formats=('%H:%M', '%H:%M:%S'),
         widget=DateAndTimeSplitWidget(),
+        help_text=('Если установить дату и время в будущем — можно делать '
+                   'отложенные публикации. Время выставляется по UTC.'),
+        label='Дата и время публикации'
     )
 
     class Meta:
